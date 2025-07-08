@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>_naveen lol</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 🔹 particles.js script -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- 🔹 FontAwesome for optional icon support -->
+  <script src="https://kit.fontawesome.com/a2d79f1fd8.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100;1,8..144,100&display=swap" rel="stylesheet">
+
+
+</head>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const player = document.getElementById('player');
+  const playBtn = document.getElementById('play-btn');
+  const progress = document.getElementById('progress');
+  const currentTime = document.getElementById('current-time');
+  const duration = document.getElementById('duration');
+
+
+  if (player && playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (player.paused) {
+        player.play();
+        playBtn.textContent = '⏸';
+      } else {
+        player.pause();
+        playBtn.textContent = '▶';
+      }
+    });
+
+    player.addEventListener('timeupdate', () => {
+      if (player.duration) {
+        const percent = (player.currentTime / player.duration) * 100;
+        progress.style.width = percent + '%';
+        currentTime.textContent = formatTime(player.currentTime);
+        duration.textContent = formatTime(player.duration);
+      }
+    });
+  }
+
+  function formatTime(sec) {
+    const minutes = Math.floor(sec / 60) || 0;
+    const seconds = Math.floor(sec % 60) || 0;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  }
+});  const playBtn = document.getElementById('play-btn');
+  const progress = document.getElementById('progress');
+  const currentTime = document.getElementById('current-time');
+  const duration = document.getElementById('duration');
+
+  playBtn.addEventListener('click', () => {
+    if (player.paused) {
+      player.play();
+      playBtn.textContent = '⏸'; // Cambiar el ícono de play a pause
+    } else {
+      player.pause();
+      playBtn.textContent = '▶'; // Cambiar el ícono de pause a play
+    }
+  });
+
+  player.addEventListener('timeupdate', () => {
+    if (player.duration) {
+      const percent = (player.currentTime / player.duration) * 100;
+      progress.style.width = percent + '%';
+      currentTime.textContent = formatTime(player.currentTime);
+      duration.textContent = formatTime(player.duration);
+    }
+  });
+
+  function formatTime(sec) {
+    const minutes = Math.floor(sec / 60) || 0;
+    const seconds = Math.floor(sec % 60) || 0;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  }
+</script>
+  <!-- 🔹 Background particles container -->
+  <div id="particles-js"></div>
+
+  <div class="container">
+    <div class="profile-header">
+    <!-- Contenido de la cabecera del perfil (nombre, ícono, etc.) -->
+
+    <!-- Este es el texto que quieres posicionar arriba a la derecha -->
+    <div class="top-right-fixed">
+        <span class="icon"> <a href="https://discord.gg/nionstudios"><img src="https://img.icons8.com/?size=32&id=85777&format=png&color=ffffff" title="Discord" /></a></span>
+        <span class="location"></span>
+    </div>
+</div>
+
+    <div class="profile-card">
+      <img src="https://media1.tenor.com/m/0Q5IZ6e9pC8AAAAd/cat-cute-cat.gif" alt="profile" class="pfp" />
+      <div class="info">
+        <h1>_Naveen<span><a href="#"><img src="https://img.icons8.com/?size=35&id=h6eKoXSRNFgA&format=png&color=000000"><a href="#"><img src=""></a></span></h1>
+  <span class="texto-pesar">El ayer solo se ríe de mi pesar</span>
+</p>
+
+        <div class="links">
+          <a href="#"><img src="https://img.icons8.com/forma-bold-filled/50/ffffff/trophy.png" title="Winner" /></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" title="_Naveen" /></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/programming.png" title="Learning" /></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/internet.png" title="youre already here"/></a>
+        </div>
+      </div>
+    </div>
+
+<div class="music-player">
+  <img src="https://www.deejay.de/images/xl/3/6//974136.jpg" alt="cover" />
+  <div class="music-info">
+    <p class="song">? - Instrumental (MF DOOM)</p>
+    <div class="bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    <div class="time-controls">
+      <span id="current-time">0:00</span>
+      <span id="duration">2:37</span>
+    </div>
+  </div>
+  <button id="play-btn">▶</button>
+  <audio id="player" src="music/instrumental.mp3"></audio>
+</div>
+
+
+<!-- 🔹 Discord status via Lanyard -->
+<script>
+  const userId = "1006251836157739028"; // Tu ID de Discord
+  const username = document.getElementById("discord-user");
+  const statusText = document.getElementById("discord-status");
+  const avatarImg = document.getElementById("discord-avatar");
+  const avatarContainer = document.getElementById("discord-avatar-container");
+  const activityContainer = document.getElementById('discord-activity');
+
+
+  function updateDiscordStatus() {
+    fetch(`https://api.lanyard.rest/v1/users/1006251836157739028`)
+      .then(res => res.json())
+      .then(data => {
+        const d = data.data;
+
+        // Mapeo de íconos + texto para cada estado
+        const statusMap = {
+      online: {
+       icon: "https://assets.guns.lol/online.png", // Círculo verde
+       text: " "
+      },
+      dnd: {
+       icon: "https://assets.guns.lol/dnd.png", // Círculo rojo con línea
+       text: " "
+      },
+      idle: {
+       icon: "https://assets.guns.lol/idle.png", // Media luna amarilla
+       text: " "
+      },
+      offline: {
+       icon: "https://assets.guns.lol/offline.png", // Círculo gris
+       text: " "
+      }
+       }; 
+
+        // Obtener el estado actual
+        const userStatus = statusMap[d.discord_status] || {
+          icon: "https://img.icons8.com/ios/14/ffffff/question-mark.png",
+          text: "Desconocido"
+        };
+
+        // Mostrar el estado en el HTML
+        statusText.innerHTML = `
+          <img src="${userStatus.icon}" alt="${userStatus.text}" style="width:14px; height:14px; vertical-align: middle; margin-right: 5px;" />
+          ${userStatus.text}
+        `;
+
+        // Mostrar el nombre de usuario con emoji
+        username.innerHTML = `${d.discord_user.username}<a href="#><img src="https://discord.com/settings/hypesquad-online.png"></a>`;
+      });
+  }
+ // ======== NUEVA FUNCIONALIDAD: RICH PRESENCE ========
+        let activityHTML = '';
+        
+        if (d.activities && d.activities.length > 0) {
+          d.activities.forEach(activity => {
+            if (activity.type === 0) { // Jugando
+              activityHTML += `
+                <div class="discord-activity playing">
+                  <img src="https://img.icons8.com/color/16/controller.png" alt="Jugando" style="margin-right: 5px;">
+                  <span>Jugando <strong>${activity.name}</strong></span>
+                  ${activity.details ? `<div class="activity-details">${activity.details}</div>` : ''}
+                  ${activity.state ? `<div class="activity-state">${activity.state}</div>` : ''}
+                </div>
+              `;
+            } else if (activity.type === 2) { // Escuchando Spotify
+              activityHTML += `
+                <div class="discord-activity spotify">
+                  <img src="https://img.icons8.com/color/16/spotify.png" alt="Spotify" style="margin-right: 5px;">
+                  <span>Escuchando <strong>${activity.details}</strong></span>
+                  ${activity.state ? `<div class="activity-artist">por ${activity.state}</div>` : ''}
+                  ${activity.assets && activity.assets.large_text ? `<div class="activity-album">${activity.assets.large_text}</div>` : ''}
+                </div>
+              `;
+            } else if (activity.type === 3) { // Viendo
+              activityHTML += `
+                <div class="discord-activity watching">
+                  <img src="https://img.icons8.com/color/16/tv.png" alt="Viendo" style="margin-right: 5px;">
+                  <span>Viendo <strong>${activity.name}</strong></span>
+                  ${activity.details ? `<div class="activity-details">${activity.details}</div>` : ''}
+                  ${activity.state ? `<div class="activity-state">${activity.state}</div>` : ''}
+                </div>
+              `;
+            } else if (activity.type === 4) { // Estado personalizado
+              activityHTML += `
+                <div class="discord-activity custom">
+                  ${activity.emoji ? `<span style="margin-right: 5px;">${activity.emoji.name}</span>` : ''}
+                  <span>${activity.state || activity.name}</span>
+                </div>
+              `;
+            } else if (activity.type === 5) { // Compitiendo
+              activityHTML += `
+                <div class="discord-activity competing">
+                  <img src="https://img.icons8.com/color/16/trophy.png" alt="Compitiendo" style="margin-right: 5px;">
+                  <span>Compitiendo en <strong>${activity.name}</strong></span>
+                  ${activity.details ? `<div class="activity-details">${activity.details}</div>` : ''}
+                </div>
+              `;
+            } else {
+              // Actividad genérica
+              activityHTML += `
+                <div class="discord-activity generic">
+                  <span><strong>${activity.name}</strong></span>
+                  ${activity.details ? `<div class="activity-details">${activity.details}</div>` : ''}
+                  ${activity.state ? `<div class="activity-state">${activity.state}</div>` : ''}
+                </div>
+              `;
+            }
+          });
+        } else {
+          activityHTML = '<div class="no-activity">Sin actividad</div>';
+        }
+
+        // Mostrar las actividades
+        if (activityContainer) {
+          activityContainer.innerHTML = activityHTML;
+        console.error('Error fetching Discord status:', error);
+        if (activityContainer) {
+          activityContainer.innerHTML = '<div class="error">Error al cargar actividad</div>';
+        }
+      };
+  
+  // Ejecutar al cargar y cada 15 segundos
+  updateDiscordStatus();
+  setInterval(updateDiscordStatus, 15000);
+</script>
+
+
+  <!-- 🔹 Activate particles.js -->
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        size: { value: 2 },
+        color: { value: "#ffffff" },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#ffffff",
+          opacity: 0.3,
+          width: 1
+        },
+        move: { enable: true, speed: 1 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 50 },
+          push: { particles_nb: 4 }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
