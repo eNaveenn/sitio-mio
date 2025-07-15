@@ -118,9 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </p>
 
         <div class="links">
-          <a href="https://discord.gg/sPd8trhRaA"><img src="https://img.icons8.com/forma-bold-filled/50/ffffff/trophy.png" title="Winner" /></a>
-          <a href="https://guns.lol/_naveen"><img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" title="_Naveen" /></a>
-          <a href="https://enaveenn.github.io/sitio-mio/"><img src="https://img.icons8.com/ios-filled/50/ffffff/programming.png" title="Learning" /></a>
+          <a href="https://ffatierlist.com/tiers/beast"><img src="https://img.icons8.com/forma-bold-filled/50/ffffff/trophy.png" title="Winner" /></a>
+          <a href="https://discord.gg/FvYSvf27R8"><img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" title="_Naveen" /></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/programming.png" title="Learning" /></a>
           <a href="https://enaveenn.github.io/sitio-mio/"><img src="https://img.icons8.com/ios-filled/50/ffffff/internet.png" title="youre already here"/></a>
         </div>
       </div>
@@ -308,6 +308,91 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   </script>
+<script>
+  // Variables para el reproductor
+let currentTime = 0;
+let totalTime = 157; // 2:37 en segundos
+let isPlaying = false;
+let progressInterval;
 
+// Elementos del DOM
+const progressFill = document.getElementById('progressFill');
+const progressBar = document.getElementById('progressBar');
+const currentTimeSpan = document.getElementById('currentTime');
+const totalTimeSpan = document.getElementById('totalTime');
+
+// Función para formatear tiempo
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+
+// Función para actualizar la barra de progreso
+function updateProgress() {
+    const percentage = (currentTime / totalTime) * 100;
+    progressFill.style.width = percentage + '%';
+    currentTimeSpan.textContent = formatTime(currentTime);
+    totalTimeSpan.textContent = formatTime(totalTime);
+}
+
+// Función para manejar el click en la barra de progreso
+function handleProgressClick(e) {
+    const rect = progressBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = (clickX / rect.width) * 100;
+    
+    currentTime = (percentage / 100) * totalTime;
+    updateProgress();
+    
+    // Aquí podrías agregar código para cambiar el tiempo real del audio
+    // audio.currentTime = currentTime;
+}
+
+// Función para simular la reproducción
+function simulatePlayback() {
+    if (isPlaying) {
+        currentTime += 1;
+        if (currentTime >= totalTime) {
+            currentTime = 0;
+        }
+        updateProgress();
+    }
+}
+
+// Event listeners
+progressBar.addEventListener('click', handleProgressClick);
+
+// Inicializar
+updateProgress();
+
+// Simular reproducción (remover cuando conectes con audio real)
+progressInterval = setInterval(simulatePlayback, 1000);
+
+// Función para pausar/reanudar (conectar con tu botón de play)
+function togglePlayback() {
+    isPlaying = !isPlaying;
+    // Aquí conectarías con tu audio real
+    // if (isPlaying) {
+    //     audio.play();
+    // } else {
+    //     audio.pause();
+    // }
+}
+
+// Función para cuando conectes con audio real
+function connectRealAudio(audioElement) {
+    audioElement.addEventListener('timeupdate', () => {
+        currentTime = audioElement.currentTime;
+        totalTime = audioElement.duration;
+        updateProgress();
+    });
+    
+    audioElement.addEventListener('loadedmetadata', () => {
+        totalTime = audioElement.duration;
+        updateProgress();
+    });
+}
+</script>
 </body>
 </html>
