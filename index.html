@@ -301,6 +301,7 @@
             color: #0f0;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .blog-card:hover {
@@ -388,24 +389,26 @@
                     <span class="blog-tag"></span>
                 </div>
             </div>
-        </div>
-        <div class="blog-card" onclick="openBlogModal('blog4')">
-            <h3>PiktoChart</h3>
-            <p>Cultura Digital</p>
-           <div class="blog-tags">
+            <div class="blog-card" onclick="openBlogModal('blog4')">
+                <h3>PiktoChart</h3>
+                <p>Cultura Digital</p>
+                <div class="blog-tags">
                     <span class="blog-tag"></span>
                     <span class="blog-tag"></span>
                 </div>
-        </div>
-        <div class="blog-card" onclick="openBlogModal('blog5')">
-            <h3>Test</h3>
-            <p>Cultura Digital</p>
-           <div class="blog-tags">
+            </div>
+            <div class="blog-card" onclick="openBlogModal('blog5')">
+                <h3>Test</h3>
+                <p>Cultura Digital</p>
+                <div class="blog-tags">
                     <span class="blog-tag"></span>
                     <span class="blog-tag"></span>
                 </div>
+            </div>
         </div>
         
+        <!-- ===================== MODALES ===================== -->
+
         <div class="blog-modal" id="blog1Modal">
             <div class="blog-modal-content">
                 <button class="blog-modal-close" onclick="closeBlogModal('blog1')">&times;</button>
@@ -474,37 +477,33 @@
                 <h3>Post de Reddit</h3>
                 <p><strong>Posteado:</strong> Enero 30, 2026</p>
                 <p>Por mala suerte, todas las comunidades donde yo quise compartir informacion con su comunidad, tienen un sistema de auto moderacion que evita que cuentas nuevas posteen contenido en sus comunidades hasta cierto tiempo, por lo que me fue imposible realizar esta tarea.</p>
-                <ul style="color: #0f0; margin-left: 2rem;">
-                </ul>
             </div>
         </div>
 
+        <!-- blog4Modal: PiktoChart — CERRADO CORRECTAMENTE -->
         <div class="blog-modal" id="blog4Modal">
             <div class="blog-modal-content">
-               <button class="blog-modal-close" onclick="closeBlogModal('blog4')">&times;</button>
-                <h3>PikChart</h3>
+                <button class="blog-modal-close" onclick="closeBlogModal('blog4')">&times;</button>
+                <h3>PiktoChart</h3>
                 <p><strong>Posteado:</strong> Febrero , 2026</p>
                 <p>Después de que utilize Piktochart, la verdad es que me gusto muchisimo y nos dejo muy buen sabor de boca. Desde que entramos nos dimos cuenta de lo facil que es usar esta web,ya que todo esta muy bien ordenado,a la vista y no te pierdes cuando avanzas.No necesitas saber nada de diseño ni usar programas muy complicados,ya que te va guiando y facilitando todo. Algo que me gusto muchisimo fue la variedad y cantidad de plantillas que tiene para usar. Hay muchisimos colores, gráficos y estilos distintos, lo que hace que los trabajos se vean mucho más bonitos y no aburridos y repetitivos como en otros lados. Además, puedes cambiar casi todo, así que es fácil adaptar el diseño a lo que te pidan o a lo que quieras expresar.</p>
-                <p>https://create.piktochart.com/output/322f9447bd1c-create-your-own-poster</p>
-                <p>https://create.piktochart.com/output/7e72ec31c891-create-your-own-poster</p>
+                <p><a href="https://create.piktochart.com/output/322f9447bd1c-create-your-own-poster" target="_blank" style="color:#0f0;">https://create.piktochart.com/output/322f9447bd1c-create-your-own-poster</a></p>
+                <p><a href="https://create.piktochart.com/output/7e72ec31c891-create-your-own-poster" target="_blank" style="color:#0f0;">https://create.piktochart.com/output/7e72ec31c891-create-your-own-poster</a></p>
+            </div>
+        </div>
 
-                <div class="blog-modal" id="blog5Modal">
+        <!-- blog5Modal: Test — AHORA ESTÁ FUERA DE blog4Modal -->
+        <div class="blog-modal" id="blog5Modal">
             <div class="blog-modal-content">
-               <button class="blog-modal-close" onclick="closeBlogModal('blog5')">&times;</button>
+                <button class="blog-modal-close" onclick="closeBlogModal('blog5')">&times;</button>
                 <h3>Test</h3>
-                <p>Prueba<strong>Posteado:</strong> Febrero , 2026</p>
+                <p><strong>Posteado:</strong> Febrero , 2026</p>
                 <p>prueba</p>
                 <p>Test</p>
                 <p>test</p>
+            </div>
+        </div>
 
-        
-                
-                
-                
-                
-        
-                
-                
         <h2>About me</h2>
         <p>i swear theres nothing interesting so yeah, sorry if u were expecting something lmao.</p>
 
@@ -514,7 +513,7 @@
     </div>
 
     <script>
- // efecto
+        // efecto splash
         const splash = document.getElementById('splash');
         const content = document.getElementById('content');
 
@@ -526,13 +525,11 @@
             }, 500);
         });
 
- 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && !content.classList.contains('visible')) {
                 splash.click();
             }
         });
-
 
         document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'hidden';
@@ -552,7 +549,7 @@
             document.head.appendChild(style);
         });
 
-     //funciones del blog
+        // funciones del blog
         function openBlogModal(blogId) {
             const modal = document.getElementById(blogId + 'Modal');
             modal.classList.add('active');
@@ -563,14 +560,12 @@
             modal.classList.remove('active');
         }
 
-
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('blog-modal')) {
                 const blogId = e.target.id.replace('Modal', '');
                 closeBlogModal(blogId);
             }
         });
-
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
