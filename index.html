@@ -496,6 +496,10 @@
             setTimeout(() => {
                 splash.style.display = 'none';
                 content.classList.add('visible');
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                document.body.style.height = 'auto';
+                document.documentElement.style.height = 'auto';
             }, 500);
         });
 
